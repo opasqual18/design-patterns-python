@@ -34,7 +34,8 @@ Interface Strategy
 
 Define um método comum (execute(a, b)) que todas as estratégias devem implementar.
 
-class Strategy(ABC):
+    class Strategy(ABC):
+    
     @abstractmethod
     
     def execute(self, a, b):
@@ -44,12 +45,12 @@ Estratégias concretas
 
 Cada classe implementa o método de forma diferente.
 
-class SomaStrategy(Strategy):
+    class SomaStrategy(Strategy):
     
     def execute(self, a, b):
         return a + b
 
-class MultiplicaStrategy(Strategy):
+    class MultiplicaStrategy(Strategy):
     
     def execute(self, a, b):
         return a * b
@@ -58,7 +59,7 @@ Context
 
 Recebe uma estratégia e delega a ela a operação.
 
-class Context:
+    class Context:
     
     def __init__(self, strategy: Strategy):
         self._strategy = strategy
@@ -73,11 +74,11 @@ Exemplo
 
 Trocar a estratégia muda o comportamento sem alterar o código do contexto.
 
-ctx = Context(SomaStrategy())
-ctx.calcular(2, 3)  # soma
+    ctx = Context(SomaStrategy())
+    ctx.calcular(2, 3)  # soma
 
-ctx.set_strategy(MultiplicaStrategy())
-ctx.calcular(2, 3)  # multiplicação
+    ctx.set_strategy(MultiplicaStrategy())
+    ctx.calcular(2, 3)  # multiplicação
 
 ### Ideia principal
 O padrão Strategy permite trocar algoritmos em tempo de execução.  
@@ -118,13 +119,13 @@ Produtos abstratos
 
 Interfaces que definem o que os produtos devem fazer.
 
-class Button(ABC):
+    class Button(ABC):
     @abstractmethod
     
     def paint(self):
         pass
 
-class Checkbox(ABC):
+    class Checkbox(ABC):
     @abstractmethod
     
     def paint(self):
@@ -137,25 +138,25 @@ Produtos concretos
 
 Implementações específicas para cada sistema.
 
-class WindowsButton(Button):
+    class WindowsButton(Button):
     
-    def paint(self):
-        return "Botão estilo Windows"
+        def paint(self):
+            return "Botão estilo Windows"
 
-class MacButton(Button):
+    class MacButton(Button):
    
-    def paint(self):
-        return "Botão estilo Mac"
+        def paint(self):
+            return "Botão estilo Mac"
 
-class WindowsCheckbox(Checkbox):
+    class WindowsCheckbox(Checkbox):
    
-    def paint(self):
-        return "Checkbox estilo Windows"
+        def paint(self):
+            return "Checkbox estilo Windows"
 
-class MacCheckbox(Checkbox):
+    class MacCheckbox(Checkbox):
     
-    def paint(self):
-        return "Checkbox estilo Mac"
+        def paint(self):
+            return "Checkbox estilo Mac"
 
 
 Cada produto segue a interface correspondente, mas pertence a uma família (Windows ou Mac).
@@ -164,15 +165,14 @@ Abstract Factory
 
 Define a família de objetos a serem criados.
 
-class GUIFactory(ABC):
-    @abstractmethod
-    
-    def create_button(self):
-        pass
+    class GUIFactory(ABC):
+        @abstractmethod
+        def create_button(self):
+            pass
 
-    @abstractmethod
-    def create_checkbox(self):
-        pass
+        @abstractmethod
+        def create_checkbox(self):
+            pass
 
 
 A Abstract Factory especifica quais produtos podem ser criados, sem decidir como.
@@ -181,21 +181,21 @@ Concrete Factories
 
 Implementam a Abstract Factory criando produtos da mesma família.
 
-class WindowsFactory(GUIFactory):
+    class WindowsFactory(GUIFactory):
     
-    def create_button(self):
-        return WindowsButton()
+        def create_button(self):
+            return WindowsButton()
 
-    def create_checkbox(self):
-        return WindowsCheckbox()
+        def create_checkbox(self):
+            return WindowsCheckbox()
 
-class MacFactory(GUIFactory):
+    class MacFactory(GUIFactory):
     
-    def create_button(self):
-        return MacButton()
+        def create_button(self):
+            return MacButton()
 
-    def create_checkbox(self):
-        return MacCheckbox()
+        def create_checkbox(self):
+            return MacCheckbox()
 
 
 Cada fábrica garante compatibilidade entre os produtos criados.
@@ -213,8 +213,9 @@ Cliente
 O cliente depende apenas da Abstract Factory e das interfaces dos produtos, mantendo o código desacoplado.
 
 Exemplo
-client_code(WindowsFactory())   # UI estilo Windows
-client_code(MacFactory())       # UI estilo Mac
+   
+    client_code(WindowsFactory())   # UI estilo Windows
+    client_code(MacFactory())       # UI estilo Mac
 
 Trocar a família de objetos é feito apenas trocando a factory passada para o cliente.
 
@@ -260,10 +261,10 @@ Target
 
 Interface que o cliente espera usar.
 
-class Target:
+    class Target:
     
-    def request(self):
-        return "Target: comportamento padrão"
+        def request(self):
+            return "Target: comportamento padrão"
 
 
 O cliente conhece e usa apenas o método request.
@@ -272,10 +273,10 @@ Adaptee
 
 Classe existente com uma interface diferente.
 
-class Adaptee:
+    class Adaptee:
     
-    def specific_request(self):
-        return "Adaptee: comportamento existente"
+        def specific_request(self):
+            return "Adaptee: comportamento existente"
 
 
 Ela faz algo útil, mas seu método (specific_request) não é compatível com o que o cliente espera.
@@ -284,13 +285,13 @@ Adapter
 
 Traduz a interface do Adaptee para a interface Target.
 
-class Adapter(Target):
+    class Adapter(Target):
     
-    def __init__(self, adaptee: Adaptee):
-        self.adaptee = adaptee
+        def __init__(self, adaptee: Adaptee):
+            self.adaptee = adaptee
 
-    def request(self):
-        return f"Adapter: traduzindo -> ({self.adaptee.specific_request()})"
+        def request(self):
+            return f"Adapter: traduzindo -> ({self.adaptee.specific_request()})"
 
 
 O Adapter recebe uma instância de Adaptee e implementa request() chamando specific_request() internamente.
@@ -305,8 +306,9 @@ Cliente
 O cliente funciona com qualquer objeto que implemente a interface Target.
 
 Exemplo
-client_code(Target())         # comportamento padrão
-client_code(Adapter(adaptee)) # comportamento adaptado
+   
+    client_code(Target())         # comportamento padrão
+    client_code(Adapter(adaptee)) # comportamento adaptado
 
 
 Sem modificar o cliente nem a classe existente, o Adapter resolve a incompatibilidade entre interfaces.
