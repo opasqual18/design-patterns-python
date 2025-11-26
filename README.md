@@ -84,6 +84,8 @@ Assim, todos os objetos criados permanecem consistentes e o cliente nunca conhec
 ### Diagrama UML (Abstract Factory)
 
 
+<img width="479" height="526" alt="abstract" src="https://github.com/user-attachments/assets/aa18a055-ae81-4f1c-82fa-50fd96c4725a" />
+
 
 
 ### Local do código
