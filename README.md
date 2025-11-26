@@ -27,6 +27,58 @@ ChatGPT
 
 # 1. Strategy — Padrão Comportamental
 
+Explicação do código
+Este código implementa o padrão Strategy, permitindo trocar o algoritmo usado pela aplicação sem alterar o restante do código.
+
+Interface Strategy
+
+Define um método comum (execute(a, b)) que todas as estratégias devem implementar.
+
+class Strategy(ABC):
+    @abstractmethod
+    
+    def execute(self, a, b):
+        pass
+
+Estratégias concretas
+
+Cada classe implementa o método de forma diferente.
+
+class SomaStrategy(Strategy):
+    
+    def execute(self, a, b):
+        return a + b
+
+class MultiplicaStrategy(Strategy):
+    
+    def execute(self, a, b):
+        return a * b
+
+Context
+
+Recebe uma estratégia e delega a ela a operação.
+
+class Context:
+    
+    def __init__(self, strategy: Strategy):
+        self._strategy = strategy
+    
+    def set_strategy(self, strategy: Strategy):
+        self._strategy = strategy
+    
+    def calcular(self, a, b):
+        return self._strategy.execute(a, b)
+
+Exemplo
+
+Trocar a estratégia muda o comportamento sem alterar o código do contexto.
+
+ctx = Context(SomaStrategy())
+ctx.calcular(2, 3)  # soma
+
+ctx.set_strategy(MultiplicaStrategy())
+ctx.calcular(2, 3)  # multiplicação
+
 ### Ideia principal
 O padrão Strategy permite trocar algoritmos em tempo de execução.  
 A lógica muda sem alterar a estrutura do código cliente.
