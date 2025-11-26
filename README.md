@@ -53,32 +53,6 @@ Não há impacto no restante do sistema quando novas estratégias forem adiciona
 
 <img width="377" height="358" alt="SoWkIImgAStDuUNAp2j9BKfBJ4vL22ufIYn9JQzKgERbKW02xPHy_u9Ke5XcVfw69YzNBIyNBrToJc9niO9pVbvoKMf9AaoBeq9cRa5EQcvgNaan9UOuaMzEIMf52KobRZ5KgnNS4AWHnQabC16DOeIi9bGwjI8rkHJX7BWjCFDrTUsGJCGC1Jsz6dmAdD0LEAJcfO1Z0G00" src="https://github.com/user-attachments/assets/fe56f4e3-f43d-4d15-b739-8801c196a209" />
 
-
-
-```
-┌──────────────────┐
-│     Context      │
-│------------------│
-│ - strategy       │
-│ + setStrategy()  │
-│ + execute()      │
-└─────────┬────────┘
-          │
-          ▼
-┌──────────────────┐
-│    Strategy      │ <<interface>>
-│------------------│
-│ + execute()      │
-└─────────┬────────┘
-     ┌────┴────────────┐
-     ▼                 ▼
-┌───────────────┐ ┌───────────────┐
-│ ConcreteA      │ │ ConcreteB      │
-│----------------│ │----------------│
-│ + execute()    │ │ + execute()    │
-└───────────────┘ └───────────────┘
-```
-
 ### Local do código
 Arquivo: `patterns/strategy/strategy.py`
 
