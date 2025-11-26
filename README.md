@@ -83,24 +83,8 @@ Assim, todos os objetos criados permanecem consistentes e o cliente nunca conhec
 
 ### Diagrama UML (Abstract Factory)
 
-```
-┌──────────────────────────┐
-│        GUIFactory        │ <<interface>>
-│--------------------------│
-│ + createButton()         │
-│ + createCheckbox()       │
-└───────────┬──────────────┘
-            │
-    ┌───────┴────────────────┐
-    ▼                        ▼
-┌──────────────┐     ┌──────────────┐
-│ WindowsFactory│     │ MacFactory   │
-└──────┬────────┘     └──────┬───────┘
-       │ creates            │ creates
-       ▼                    ▼
-   Button Windows       Button Mac
-   Checkbox Windows     Checkbox Mac
-```
+
+
 
 ### Local do código
 Arquivo: `patterns/abstract_factory/abstract_factory.py`
@@ -131,29 +115,8 @@ O cliente não é modificado.
 
 ### Diagrama UML (Adapter)
 
-```
-┌──────────────────┐
-│     Client       │
-└──┬───────────────┘
-   │
-   ▼
-┌──────────────────┐
-│   Target         │ <<interface>>
-│ + request()      │
-└──┬───────────────┘
-   │
-   ▼
-┌──────────────────┐
-│     Adapter      │
-│ adaptee.request  │
-└──┬───────────────┘
-   │
-   ▼
-┌──────────────────┐
-│     Adaptee      │
-│ + specific()     │
-└──────────────────┘
-```
+<img width="164" height="342" alt="ZOzD2i8m48Nt0tE7B1Lf3-2Yr2k85nZILmaa8MQcA_Nkbj8gTELR3j_xcLvDgaqfCeLigADuk9lKEymzcToiKyLZWjhXoFHcOl9HLDrba38RN4Wb8Y6RxdoDB0JEAue_ul0jrG8Vnk2lEtghRPhkbxiTs_RLhIkOUkHXUUm3" src="https://github.com/user-attachments/assets/86ff524d-db2d-4bb0-bf6b-1002bfb7cd26" />
+
 
 ### Local do código
 Arquivo: `patterns/adapter/adapter.py`
