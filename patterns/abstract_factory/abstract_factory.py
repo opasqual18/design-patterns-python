@@ -1,11 +1,17 @@
 from abc import ABC, abstractmethod
 
-# Produtos
+# Produtos abstratos
 class Button(ABC):
     @abstractmethod
     def paint(self):
         pass
 
+class Checkbox(ABC):
+    @abstractmethod
+    def paint(self):
+        pass
+
+# Produtos concretos
 class WindowsButton(Button):
     def paint(self):
         return "Botão estilo Windows"
@@ -13,11 +19,6 @@ class WindowsButton(Button):
 class MacButton(Button):
     def paint(self):
         return "Botão estilo Mac"
-
-class Checkbox(ABC):
-    @abstractmethod
-    def paint(self):
-        pass
 
 class WindowsCheckbox(Checkbox):
     def paint(self):
