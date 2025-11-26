@@ -254,7 +254,62 @@ Arquivo: `patterns/abstract_factory/abstract_factory.py`
 # 3. Adapter — Padrão Estrutural
 
 Explicação do código
+Este código implementa o padrão Adapter, que permite fazer duas classes incompatíveis trabalharem juntas convertendo a interface de uma para a interface esperada pela outra.
 
+Target
+
+Interface que o cliente espera usar.
+
+class Target:
+    
+    def request(self):
+        return "Target: comportamento padrão"
+
+
+O cliente conhece e usa apenas o método request.
+
+Adaptee
+
+Classe existente com uma interface diferente.
+
+class Adaptee:
+    
+    def specific_request(self):
+        return "Adaptee: comportamento existente"
+
+
+Ela faz algo útil, mas seu método (specific_request) não é compatível com o que o cliente espera.
+
+Adapter
+
+Traduz a interface do Adaptee para a interface Target.
+
+class Adapter(Target):
+    
+    def __init__(self, adaptee: Adaptee):
+        self.adaptee = adaptee
+
+    def request(self):
+        return f"Adapter: traduzindo -> ({self.adaptee.specific_request()})"
+
+
+O Adapter recebe uma instância de Adaptee e implementa request() chamando specific_request() internamente.
+O cliente continua usando Target, mas o comportamento vem do Adaptee.
+
+Cliente
+
+    def client_code(target: Target):
+        print(target.request())
+
+
+O cliente funciona com qualquer objeto que implemente a interface Target.
+
+Exemplo
+client_code(Target())         # comportamento padrão
+client_code(Adapter(adaptee)) # comportamento adaptado
+
+
+Sem modificar o cliente nem a classe existente, o Adapter resolve a incompatibilidade entre interfaces.
 
 ### Ideia principal
 Permite que objetos com interfaces incompatíveis trabalhem juntos.
