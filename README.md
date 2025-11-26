@@ -111,6 +111,112 @@ Arquivo: `patterns/strategy/strategy.py`
 ---
 
 # 2. Abstract Factory — Padrão Criacional
+Explicação do código
+Este código implementa o padrão Abstract Factory, que permite criar famílias de objetos relacionados (ex.: componentes UI) sem acoplar o código às classes concretas.
+
+Produtos abstratos
+
+Interfaces que definem o que os produtos devem fazer.
+
+class Button(ABC):
+    @abstractmethod
+    
+    def paint(self):
+        pass
+
+class Checkbox(ABC):
+    @abstractmethod
+    
+    def paint(self):
+        pass
+
+
+Button e Checkbox são contratos: definem o método paint(), mas não a implementação.
+
+Produtos concretos
+
+Implementações específicas para cada sistema.
+
+class WindowsButton(Button):
+    
+    def paint(self):
+        return "Botão estilo Windows"
+
+class MacButton(Button):
+   
+    def paint(self):
+        return "Botão estilo Mac"
+
+class WindowsCheckbox(Checkbox):
+   
+    def paint(self):
+        return "Checkbox estilo Windows"
+
+class MacCheckbox(Checkbox):
+    
+    def paint(self):
+        return "Checkbox estilo Mac"
+
+
+Cada produto segue a interface correspondente, mas pertence a uma família (Windows ou Mac).
+
+Abstract Factory
+
+Define a família de objetos a serem criados.
+
+class GUIFactory(ABC):
+    @abstractmethod
+    
+    def create_button(self):
+        pass
+
+    @abstractmethod
+    def create_checkbox(self):
+        pass
+
+
+A Abstract Factory especifica quais produtos podem ser criados, sem decidir como.
+
+Concrete Factories
+
+Implementam a Abstract Factory criando produtos da mesma família.
+
+class WindowsFactory(GUIFactory):
+    
+    def create_button(self):
+        return WindowsButton()
+
+    def create_checkbox(self):
+        return WindowsCheckbox()
+
+class MacFactory(GUIFactory):
+    
+    def create_button(self):
+        return MacButton()
+
+    def create_checkbox(self):
+        return MacCheckbox()
+
+
+Cada fábrica garante compatibilidade entre os produtos criados.
+
+Cliente
+
+    def client_code(factory: GUIFactory):
+    
+        button = factory.create_button()
+        checkbox = factory.create_checkbox()
+        print(button.paint())
+        print(checkbox.paint())
+
+
+O cliente depende apenas da Abstract Factory e das interfaces dos produtos, mantendo o código desacoplado.
+
+Exemplo
+client_code(WindowsFactory())   # UI estilo Windows
+client_code(MacFactory())       # UI estilo Mac
+
+Trocar a família de objetos é feito apenas trocando a factory passada para o cliente.
 
 ### Ideia principal
 Cria famílias de objetos relacionados sem acoplar o código às classes concretas.
@@ -146,6 +252,9 @@ Arquivo: `patterns/abstract_factory/abstract_factory.py`
 ---
 
 # 3. Adapter — Padrão Estrutural
+
+Explicação do código
+
 
 ### Ideia principal
 Permite que objetos com interfaces incompatíveis trabalhem juntos.
