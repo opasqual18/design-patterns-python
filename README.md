@@ -8,7 +8,7 @@ Conteúdo: implementações simples em **Python** de três padrões de projeto:
 ## O que tem aqui
 Cada padrão tem:
 - um arquivo `.py` com a implementação e um exemplo executável
-- um pequeno README específico do padrão (explica problema e solução)
+- um pequeno README específico do padrão 
 
 ## Execução
 Execute cada exemplo com Python 3:
@@ -23,4 +23,4 @@ Conteúdo conceitual baseado em:
 Refactoring Guru — Design Patterns: https://refactoring.guru/pt-br/design-patterns
 
 ## Uso de LLM
-Implementações geradas com auxílio do assistente **ChatGPT (GPT-5 Thinking mini)**. Indique isso no seu trabalho conforme o enunciado.
+Implementações geradas com auxílio do assistente ChatGPT.
