@@ -1,12 +1,12 @@
 from abc import ABC, abstractmethod
 
-# Interface da Strategy
+# Interface Strategy
 class Strategy(ABC):
     @abstractmethod
     def execute(self, a, b):
         pass
 
-# Estratégias
+# Estratégias concretas
 class SomaStrategy(Strategy):
     def execute(self, a, b):
         return a + b
@@ -15,7 +15,7 @@ class MultiplicaStrategy(Strategy):
     def execute(self, a, b):
         return a * b
 
-# Contexto que usa a Strategy
+# Contexto que usa Strategy
 class Context:
     def __init__(self, strategy: Strategy):
         self._strategy = strategy
@@ -30,5 +30,6 @@ class Context:
 if __name__ == "__main__":
     ctx = Context(SomaStrategy())
     print("Soma: 2 + 3 =", ctx.calcular(2, 3))
+
     ctx.set_strategy(MultiplicaStrategy())
     print("Multiplicação: 2 * 3 =", ctx.calcular(2, 3))
